@@ -1,0 +1,36 @@
+from collections import deque
+
+def hanoi(n):
+    start = (0,)*n
+    goal = (2,)*n
+    q = deque([(start, [])])
+    seen = {start}
+
+    while q:
+        s, path = q.popleft()
+
+        if s == goal:
+            for x in path+[s]:
+                print(x)
+            return
+
+        rods = [[i for i in range(n) if s[i] == r]
+                for r in range(3)]
+
+        for a in range(3):
+            if not rods[a]:
+                continue
+
+            d = min(rods[a])
+
+            for b in range(3):
+                if a != b and (not rods[b] or d < min(rods[b])):
+                    t = list(s)
+                    t[d] = b
+                    t = tuple(t)
+
+                    if t not in seen:
+                        seen.add(t)
+                        q.append((t, path+[s]))
+
+hanoi(3)
