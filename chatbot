@@ -1,0 +1,14 @@
+while True:
+    s = input("You: ").lower()
+
+    if s == "hello":
+        print("Bot: Hello!")
+    elif s == "how are you":
+        print("Bot: I am fine!")
+    elif s == "what is your name":
+        print("Bot: I am AI chatbot")
+    elif s == "bye":
+        print("Bot: Goodbye!")
+        break
+    else:
+        print("Bot: Sorry, I don't understand")
