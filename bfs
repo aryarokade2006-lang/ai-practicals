@@ -1,0 +1,24 @@
+from collections import deque
+
+def bfs(g, s, goal):
+    q = deque([[s]])
+    v = set()
+
+    while q:
+        p = q.popleft()
+        n = p[-1]
+
+        if n == goal:
+            print(p)
+            return
+
+        if n not in v:
+            v.add(n)
+            for x in g[n]:
+                q.append(p + [x])
+
+g = {'A':['B','C'], 'B':['D','E'],
+     'C':['F'], 'D':[], 'E':['G'],
+     'F':[], 'G':[]}
+
+bfs(g, 'A', 'G')
