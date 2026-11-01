@@ -1,0 +1,26 @@
+def alphabeta(d, n, maxp, a, b):
+    if d == 3:
+        return values[n]
+
+    if maxp:
+        best = -999
+        for i in range(2):
+            best = max(best, alphabeta(d+1, n*2+i, False, a, b))
+            a = max(a, best)
+            if a >= b:
+                break
+        return best
+
+    else:
+        best = 999
+        for i in range(2):
+            best = min(best, alphabeta(d+1, n*2+i, True, a, b))
+            b = min(b, best)
+            if a >= b:
+                break
+        return best
+
+values = [3,5,6,9,1,2,0,-1]
+
+print("Optimal value:",
+      alphabeta(0, 0, True, -999, 999))
